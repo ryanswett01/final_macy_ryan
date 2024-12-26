@@ -1,0 +1,79 @@
+---
+title: "Project Description"
+---
+
+### Introduction
+
+This analysis aims to guide policymakers in identifying areas of Pennsylvania where resources can be allocated more equitably and effectively. By examining demographic, economic, and environmental data, the goal is to uncover patterns and clusters of counties that highlight disparities and areas of need. The results of this study will provide evidence-based insights to inform resource allocation and policy interventions, particularly in addressing poverty, unemployment, and access to environmental resources like parks.
+
+### Research Questions
+
+1. Are demographic, economic, and environmental factors spatially correlated across the state of Pennsylvania?
+
+2. How can the identification of similar county clusters help policymakers equitably allocate resources?
+
+### Requirements Met
+
+1. Data was collected through a means more sophisticated than downloading (**API**).
+
+2. It combines data collected from 3 or more different sources.
+
+3. The analysis of the data is reasonably complex, involving multiple steps (**geospatial joins/operations**).
+
+4. Scikit-learn was used to perform a clustering analysis.
+
+
+### Data Setup
+
+To answer these research questions, we integrated data from several sources:
+
+1. American Community Survey (ACS): Using the Census Bureau’s ACS 5-year estimates API, we gathered key demographic and economic indicators for all counties in Pennsylvania. These include:
+    a. Total population
+    b. Median household income
+    c. Per capita income
+    d. Educational attainment (e.g., high school graduates, bachelor’s degree holders)
+    e. Poverty rate
+    f. Median housing value
+    g. Racial demographics (e.g., white, Black, Hispanic populations)
+    h. Geospatial Data: We obtained county boundary geometries for Pennsylvania from a GeoJSON file and reprojected the data to Pennsylvania State Plane (EPSG: 2272) for spatial analysis.
+
+2. Park Data: Data on local park coverage by county was sourced from the Pennsylvania Department of Conservation and Natural Resources (DCNR). Using park acreage, we calculated the percentage of local park area relative to each county’s total area.
+
+3. Unemployment Data: Unemployment rates were extracted from the National Institute on Minority Health and Health Disparities.
+
+### Data Preparation and Cleaning
+
+Merging Datasets: The ACS data was merged with geospatial county boundaries using unique identifiers. Additional park and unemployment data were integrated using county names.
+Derived Variables: Several new variables were calculated to enhance the analysis:
+
+a. Percent White, Black, Hispanic populations: Calculated as proportions of the total population.
+    
+b. Educational attainment percentages: Calculated for both high school graduates and bachelor’s degree holders.
+    
+c. Percent Local Park: Calculated as the proportion of county area covered by local parks.
+    
+d. Handling Missing Values: Missing values were handled by imputing medians or zeros for specific variables to ensure compatibility for clustering and other analyses.
+ 
+### Analysis Approach
+
+Correlation Analysis: A correlation matrix was generated to explore relationships between demographic, economic, and environmental variables.
+
+Spatial Visualization: Maps were created to visualize spatial patterns in key variables like unemployment rates, poverty levels, and local park coverage.
+
+Clustering Analysis: Using K-means clustering, counties were grouped based on socioeconomic, demographic, and environmental characteristics. This helped identify clusters of counties with similar needs or advantages.
+
+Socioeconomic Index: A composite index was calculated combining median household income, bachelor’s degree attainment, and poverty rate to rank counties based on overall socioeconomic well-being.
+
+### Goal and Application
+
+The results of this analysis will:
+   
+   a. Highlight disparities across Pennsylvania counties in income, education, environmental access, and unemployment.
+   
+   b. Identify clusters of counties with shared characteristics to allow targeted policymaking.
+   
+   c. Serve as a resource for state and local governments to allocate resources more equitably, focusing on underserved communities.
+   
+### About the Researchers
+
+Macy Trout and Ryan Swett conducted this research for MUSA 550 Geospatial Data Science in Python. They are Master of Urban Spatial Analytics students at the University of Pennsylvania.
